@@ -554,14 +554,15 @@ img{max-width:100%;display:block}
         <div class="slide-dots" id="slideDots"></div>
         <div class="slide-nav">
           <button id="slidePrev" aria-label="Previous slide">&#8249;</button>
+          <button id="slidePause" aria-label="Pause slideshow" title="Pause">&#9646;&#9646;</button>
           <button id="slideNext" aria-label="Next slide">&#8250;</button>
         </div>
       </div>
     </div>
 
     <div class="demo-actions">
-      <a href="https://preophq-production.up.railway.app/#/" target="_blank" rel="noopener" class="btn btn-primary">Provider Dashboard <span style="font-size:1.1em">↗</span></a>
-      <a href="https://preophq-production.up.railway.app/?view=facility" target="_blank" rel="noopener" class="btn btn-ghost">Surgical Center Dashboard <span style="font-size:1.1em">↗</span></a>
+      <a href="https://www.perplexity.ai/computer/a/lincr-preop-PasH3ptwTk6tiRwOWTEaYQ" target="_blank" rel="noopener" class="btn btn-primary">Provider Dashboard <span style="font-size:1.1em">↗</span></a>
+      <a href="https://www.perplexity.ai/computer/a/lincr-preop-PasH3ptwTk6tiRwOWTEaYQ" target="_blank" rel="noopener" class="btn btn-ghost">Surgical Center Dashboard <span style="font-size:1.1em">↗</span></a>
     </div>
 
 
@@ -674,6 +675,8 @@ const nextBtn = document.getElementById('slideNext');
 let currentView = 'provider';
 let currentSlide = 0;
 let autoTimer = null;
+let isPaused = false;
+const pauseBtn = document.getElementById('slidePause');
 
 function getActiveSlideshow() {
   return document.getElementById('slideshow-' + currentView);
@@ -708,9 +711,26 @@ function goToSlide(idx) {
 
 function resetAutoAdvance() {
   clearInterval(autoTimer);
-  autoTimer = setInterval(() => {
-    goToSlide(currentSlide + 1);
-  }, 4000);
+  if (!isPaused) {
+    autoTimer = setInterval(() => {
+      goToSlide(currentSlide + 1);
+    }, 4000);
+  }
+}
+
+function togglePause() {
+  isPaused = !isPaused;
+  if (isPaused) {
+    clearInterval(autoTimer);
+    pauseBtn.innerHTML = '&#9654;';
+    pauseBtn.title = 'Play';
+    pauseBtn.setAttribute('aria-label', 'Play slideshow');
+  } else {
+    resetAutoAdvance();
+    pauseBtn.innerHTML = '&#9646;&#9646;';
+    pauseBtn.title = 'Pause';
+    pauseBtn.setAttribute('aria-label', 'Pause slideshow');
+  }
 }
 
 function switchView(view) {
@@ -736,6 +756,7 @@ tabs.forEach(tab => {
 
 prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
 nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+pauseBtn.addEventListener('click', togglePause);
 
 // Initialize
 renderDots();
