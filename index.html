@@ -125,6 +125,35 @@ img{max-width:100%;display:block}
   margin-bottom:2rem;background:rgba(20,184,166,.06);
 }
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.hero-eyebrow{
+  display:inline-block;font-family:var(--mono);font-size:.78rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.75rem;padding:6px 0;
+}
+.hero-accent{
+  background:linear-gradient(120deg,var(--accent) 0%,#5eead4 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  font-weight:400;
+}
+.hero-stats{
+  margin-top:3.5rem;display:flex;align-items:center;gap:clamp(1.25rem,3vw,3rem);
+  flex-wrap:wrap;padding-top:2.5rem;border-top:1px solid var(--border);
+  max-width:900px;
+}
+.hero-stat{display:flex;flex-direction:column;gap:.4rem;min-width:140px}
+.hero-stat-num{
+  font-family:var(--mono);font-size:clamp(1.4rem,2.4vw,1.85rem);
+  font-weight:500;color:var(--text-primary);letter-spacing:-.01em;
+}
+.hero-stat-label{
+  font-size:.82rem;color:var(--text-muted);line-height:1.45;max-width:200px;
+}
+.hero-stat-divider{width:1px;height:36px;background:var(--border);flex-shrink:0}
+@media(max-width:680px){
+  .hero-stat-divider{display:none}
+  .hero-stats{gap:1.5rem}
+}
 .hero h1{
   font-size:clamp(3rem,8vw,5.5rem);font-weight:300;line-height:1.05;
   color:var(--text-primary);margin-bottom:1.5rem;max-width:800px;
@@ -366,6 +395,87 @@ img{max-width:100%;display:block}
 }
 .footer-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
 
+/* ===== ROI / PRICING (ASC) ===== */
+.roi{padding:var(--section-gap) 0;border-top:1px solid var(--border)}
+.roi-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem}
+.roi-head .section-subtext{margin-top:1rem}
+.roi-split{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2rem}
+.roi-card{padding:clamp(28px,3.5vw,44px)}
+.roi-card .roi-card-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.roi-card .roi-card-value{font-size:clamp(2.4rem,5vw,3.4rem);font-weight:300;color:var(--text-primary);letter-spacing:-.02em;line-height:1.05;margin-bottom:.5rem}
+.roi-card .roi-card-value .unit{font-family:var(--mono);font-size:.95rem;color:var(--text-muted);font-weight:400;margin-left:.5rem;letter-spacing:0}
+.roi-card .roi-card-sub{font-size:.95rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1.5rem}
+.roi-card.savings{background:linear-gradient(180deg,rgba(20,184,166,.1) 0%,var(--surface) 100%);border-color:rgba(20,184,166,.35)}
+.roi-card.savings .roi-card-value{color:var(--accent)}
+.roi-bullets{list-style:none;padding:0;margin:0}
+.roi-bullets li{display:flex;align-items:flex-start;gap:.6rem;padding:.45rem 0;font-size:.92rem;color:var(--text-secondary);line-height:1.55}
+.roi-bullets li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:.55rem;flex-shrink:0}
+.roi-math{
+  border:1px dashed var(--border);border-radius:14px;padding:1.75rem;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;align-items:center;
+}
+.roi-math-step{text-align:center}
+.roi-math-step .v{font-family:var(--mono);font-size:1.05rem;color:var(--text-primary);margin-bottom:.25rem}
+.roi-math-step .k{font-size:.75rem;color:var(--text-muted)}
+.roi-math-op{font-family:var(--mono);color:var(--accent);font-size:1.2rem;text-align:center}
+
+/* ===== ROADMAP ===== */
+.roadmap{padding:var(--section-gap) 0;border-top:1px solid var(--border)}
+.roadmap-head{margin-bottom:3.5rem;max-width:760px}
+.roadmap-grid{position:relative;display:grid;grid-template-columns:120px 1fr;gap:0}
+.roadmap-rail{position:absolute;left:60px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--accent) 0%,var(--border) 25%,var(--border) 100%)}
+.roadmap-row{display:contents}
+.roadmap-marker{display:flex;flex-direction:column;align-items:center;padding:1.25rem 0;position:relative;z-index:1}
+.roadmap-dot{width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--text-muted);position:relative;z-index:1}
+.roadmap-dot.live{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 6px rgba(20,184,166,.18)}
+.roadmap-when{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);letter-spacing:.1em;margin-top:.6rem;text-transform:uppercase;text-align:center;line-height:1.4}
+.roadmap-card{padding:1.5rem 0 1.5rem 1.75rem;border-bottom:1px solid var(--border)}
+.roadmap-row:last-child .roadmap-card{border-bottom:none}
+.roadmap-card .phase{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.roadmap-card h3{font-size:1.15rem;font-weight:500;color:var(--text-primary);margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.roadmap-card h3 .live-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--accent);background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.4);padding:3px 9px;border-radius:4px;text-transform:uppercase}
+.roadmap-card p{font-size:.92rem;color:var(--text-secondary);line-height:1.65;max-width:680px}
+@media(max-width:700px){
+  .roadmap-grid{grid-template-columns:60px 1fr}
+  .roadmap-rail{left:30px}
+}
+
+/* ===== MARKET SIZE ===== */
+.market{padding:var(--section-gap) 0;border-top:1px solid var(--border)}
+.market-head{margin-bottom:3rem;max-width:760px}
+.market-viz{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+.market-bars{display:flex;flex-direction:column;gap:1rem}
+.market-bar{position:relative;border-radius:12px;padding:1.5rem 1.75rem;border:1px solid var(--border);overflow:hidden}
+.market-bar.tam{background:linear-gradient(90deg,rgba(20,184,166,.04) 0%,transparent 100%)}
+.market-bar.sam{margin-left:8%;background:linear-gradient(90deg,rgba(20,184,166,.08) 0%,transparent 100%)}
+.market-bar.som{margin-left:18%;background:linear-gradient(90deg,rgba(20,184,166,.18) 0%,transparent 100%);border-color:rgba(20,184,166,.5)}
+.market-bar .lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.5rem}
+.market-bar.som .lbl{color:var(--accent)}
+.market-bar .val{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:300;color:var(--text-primary);letter-spacing:-.02em;line-height:1.05;margin-bottom:.4rem}
+.market-bar .desc{font-size:.85rem;color:var(--text-secondary);line-height:1.5}
+.market-notes{display:flex;flex-direction:column;gap:1.5rem}
+.market-note .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.market-note .v{font-size:.95rem;color:var(--text-secondary);line-height:1.65}
+@media(max-width:900px){
+  .market-viz{grid-template-columns:1fr}
+}
+
+/* ===== BUSINESS MODEL ===== */
+.bizmodel{padding:var(--section-gap) 0;border-top:1px solid var(--border)}
+.bizmodel-head{margin-bottom:3rem;max-width:760px}
+.bizmodel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.bizmodel-card{padding:1.75rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;gap:.75rem;position:relative}
+.bizmodel-card.live{border-color:rgba(20,184,166,.45);background:linear-gradient(180deg,rgba(20,184,166,.06) 0%,var(--surface) 100%)}
+.bizmodel-card .phase{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.bizmodel-card h3{font-size:1.05rem;font-weight:500;color:var(--text-primary)}
+.bizmodel-card .price{font-family:var(--mono);font-size:1.05rem;color:var(--text-primary)}
+.bizmodel-card .price .sub{font-size:.78rem;color:var(--text-muted);font-family:'Inter',sans-serif;font-weight:400;margin-left:.4rem}
+.bizmodel-card p{font-size:.85rem;color:var(--text-secondary);line-height:1.55}
+.bizmodel-card .when{margin-top:auto;padding-top:.5rem;font-family:var(--mono);font-size:.68rem;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:1000px){
+  .bizmodel-grid{grid-template-columns:repeat(2,1fr)}
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   .platform-cards{grid-template-columns:1fr;gap:1rem}
@@ -373,6 +483,9 @@ img{max-width:100%;display:block}
   .product-grid{grid-template-columns:1fr}
   .pricing-grid{grid-template-columns:1fr}
   .roi-grid{grid-template-columns:repeat(2,1fr)}
+  .roi-split{grid-template-columns:1fr}
+  .roi-math{grid-template-columns:1fr;gap:.5rem}
+  .roi-math-op{display:none}
 }
 @media(max-width:768px){
   .nav-links{display:none}
@@ -411,11 +524,11 @@ img{max-width:100%;display:block}
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#platform">Platform</a>
-      <a href="#product">LINCR</a>
       <a href="#demo">Demo</a>
+      <a href="#roi">Pricing</a>
+      <a href="#market">Market</a>
       <a href="#founder">Founder</a>
-      <a href="#waitlist">Waitlist</a>
-      <a href="#contact">Contact</a>
+      <a href="#waitlist">Pilot</a>
     </div>
     <div class="burger" id="burger" aria-label="Menu" role="button" tabindex="0">
       <span></span><span></span><span></span>
@@ -426,22 +539,23 @@ img{max-width:100%;display:block}
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#platform">Platform</a>
-  <a href="#product">LINCR</a>
   <a href="#demo">Demo</a>
+  <a href="#roi">Pricing</a>
+  <a href="#market">Market</a>
   <a href="#founder">Founder</a>
-  <a href="#waitlist">Waitlist</a>
-  <a href="#contact">Contact</a>
+  <a href="#waitlist">Pilot</a>
 </div>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
   <div class="hero-grid"></div>
   <div class="container hero-content">
-    <h1>Surgical Clearance,<br>On Demand</h1>
-    <p class="hero-sub">LINCR connects surgery centers with anesthesia providers for pre-anesthesia evaluation and surgical clearance — one product, one closed loop.</p>
+    <div class="hero-eyebrow">Built for Ambulatory Surgery Centers</div>
+    <h1>Stop losing<br>cases to a missed<br><span class="hero-accent">pre-op call.</span></h1>
+    <p class="hero-sub">LINCR is the on-demand pre-anesthesia clearance layer for ambulatory surgery centers. Post a case, a credentialed anesthesia provider clears it on video, you get a signed note before the patient walks in.</p>
     <div class="hero-cta">
-      <a href="#demo" class="btn btn-primary">Try the Demo <span style="font-size:1.1em">↗</span></a>
-      <a href="#platform" class="btn btn-ghost">Learn More <span style="font-size:1.1em">↓</span></a>
+      <a href="#waitlist" class="btn btn-primary">Book a Pilot <span style="font-size:1.1em">↗</span></a>
+      <a href="#demo" class="btn btn-ghost">Try the Demo <span style="font-size:1.1em">↓</span></a>
     </div>
   </div>
 </section>
@@ -502,22 +616,22 @@ img{max-width:100%;display:block}
       <div class="card product-card">
         <div class="num">01</div>
         <h3>Surgical Center Posts a Case</h3>
-        <p>Surgery center submits patient details and surgery date. LINCR sends the patient an intake link via SMS or email — no app download required.</p>
+        <p>Surgery center submits patient details and surgery date. The case lands in the LINCR queue in under a minute.</p>
       </div>
       <div class="card product-card">
         <div class="num">02</div>
-        <h3>Provider Claims It</h3>
-        <p>Anesthesia providers browse available cases, pick a time slot, and claim the case. Work from anywhere, on your schedule.</p>
+        <h3>Patient Gets a Text &amp; Picks a Time</h3>
+        <p>Patient receives an SMS with their intake link — no app download. They complete medical history on their phone and tap the windows that work for their pre-op video visit.</p>
       </div>
       <div class="card product-card">
         <div class="num">03</div>
-        <h3>Evaluate &amp; Clear</h3>
-        <p>Provider conducts a video visit, reviews the patient intake, and completes the pre-anesthesia evaluation and surgical clearance note.</p>
+        <h3>Provider Claims It</h3>
+        <p>Credentialed anesthesia providers browse available cases, pick a slot the patient already opened, and claim the case. Work from anywhere, on your schedule.</p>
       </div>
       <div class="card product-card">
         <div class="num">04</div>
-        <h3>Outcomes &amp; Feedback</h3>
-        <p>After surgery, the surgical center records outcomes. LINCR flags cases where triage and results didn't align — closing the feedback loop on every case.</p>
+        <h3>Evaluate &amp; Clear</h3>
+        <p>Provider conducts the video visit, reviews the patient intake, and signs the pre-anesthesia evaluation and surgical clearance note.</p>
       </div>
     </div>
   </div>
@@ -535,15 +649,22 @@ img{max-width:100%;display:block}
     <div class="demo-tabs">
       <button class="demo-tab active" data-view="provider">Provider Dashboard</button>
       <button class="demo-tab" data-view="asc">Surgical Center Dashboard</button>
+      <button class="demo-tab" data-view="patient">Patient Flow</button>
     </div>
 
     <div class="demo-screenshot-wrap">
       <!-- Provider Dashboard slideshow -->
       <div class="demo-slideshow" id="slideshow-provider">
-        <img src="provider-1-login.png" alt="Provider dashboard overview" data-label="Dashboard" class="active">
-        <img src="provider-2-available.png" alt="Available cases marketplace" data-label="Available Cases">
+        <img src="provider-2-available.png" alt="Open queue of available cases" data-label="Open Queue" class="active">
         <img src="provider-3-claim.png" alt="Claim case and schedule visit" data-label="Claim & Schedule">
         <img src="provider-3-casedetail.png" alt="Case detail with triage" data-label="Case Detail">
+        <img src="provider-1-login.png" alt="Completed cases dashboard" data-label="Completed">
+      </div>
+      <!-- Patient Flow slideshow -->
+      <div class="demo-slideshow" id="slideshow-patient" style="display:none">
+        <img src="patient-0-sms.png" alt="Patient receives intake SMS" data-label="1. Intake link via SMS" class="active">
+        <img src="patient-3-questionnaire.png" alt="Patient medical history form" data-label="2. Medical history">
+        <img src="patient-6-availability.png" alt="Patient picks availability slots" data-label="3. Pick availability">
       </div>
       <!-- ASC Dashboard slideshow -->
       <div class="demo-slideshow" id="slideshow-asc" style="display:none">
@@ -556,7 +677,7 @@ img{max-width:100%;display:block}
 
       <!-- Slide controls -->
       <div class="slide-controls">
-        <span class="slide-label" id="slideLabel">Dashboard</span>
+        <span class="slide-label" id="slideLabel">Open Queue</span>
         <div class="slide-dots" id="slideDots"></div>
         <div class="slide-nav">
           <button id="slidePrev" aria-label="Previous slide">&#8249;</button>
@@ -573,6 +694,194 @@ img{max-width:100%;display:block}
 
   </div>
 </section>
+
+<!-- ===== ROI / PRICING ===== -->
+<section class="roi" id="roi">
+  <div class="container">
+    <div class="roi-head">
+      <div>
+        <div class="section-label">Pricing &middot; ROI</div>
+        <h2 class="section-heading">$250 in. $5,600 out.</h2>
+        <p class="section-subtext">No subscription, no implementation fee, no per-seat license. Pay per cleared case &mdash; only when a credentialed anesthesia provider signs the note.</p>
+      </div>
+    </div>
+
+    <div class="roi-split">
+      <div class="card roi-card">
+        <div class="roi-card-label">What you pay</div>
+        <div class="roi-card-value">$250<span class="unit">/ cleared case</span></div>
+        <p class="roi-card-sub">Flat per-case fee. Zero charge if a case isn't cleared in time. Provider keeps $150, LINCR keeps $100 to operate the marketplace.</p>
+        <ul class="roi-bullets">
+          <li>Signed pre-anesthesia clearance, ready in your portal</li>
+          <li>Patient intake collected via SMS &mdash; no app download</li>
+          <li>Outcome tracking + missed-case dashboard included</li>
+          <li>HIPAA-compliant video, BAA on request</li>
+        </ul>
+      </div>
+
+      <div class="card roi-card savings">
+        <div class="roi-card-label">What one prevented cancellation saves</div>
+        <div class="roi-card-value">$5,850<span class="unit">midpoint lost per case</span></div>
+        <p class="roi-card-sub">A same-day cancellation in an ASC burns about $5,850 on average &mdash; the midpoint of $65/min in OR cost across a 90-minute case. That covers the lost OR slot, idle staff, prepped supplies, and the scramble to rebook.</p>
+        <ul class="roi-bullets">
+          <li>Reclaim 1–2 OR slots per week from preventable cancellations</li>
+          <li>Stop chasing patients for missing meds, EKGs, labs</li>
+          <li>Push pre-op work off your nurse's desk</li>
+          <li>Documented clearance trail for QI / audit</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== ROADMAP (removed) =====
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <div class="roadmap-head">
+      <div class="section-label">Roadmap</div>
+      <h2 class="section-heading">One wedge today.<br>Eight products by 2030.</h2>
+      <p class="section-subtext">Pre-op clearance is the foothold. Each product after it lands inside an ASC we already serve, on a workflow we already touch, with a provider network we already credentialed.</p>
+    </div>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-rail"></div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot live"></div><div class="roadmap-when">Live<br>Now</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 1</div><h3>Pre-op Clearance Marketplace <span class="live-tag">Live</span></h3><p>Surgery centers post a case, a credentialed anesthesia provider conducts the video evaluation and signs the clearance note. $250/case, ASC pays.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">Q3<br>2026</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 2</div><h3>Billing-as-a-Service</h3><p>LINCR bills the patient's insurance for the consult (CPT 99451 / 99202–99215) on the provider's behalf. Provider keeps ~$250, LINCR earns an 8–12% billing fee. Unlocks payer-funded growth.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">2027</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 3</div><h3>Day-of Virtual Anesthesia Consult</h3><p>Same marketplace, different shift. Cover OR holding-room consults, PACU questions, and same-day plan changes when an in-person anesthetist isn't available.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">2027</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 4</div><h3>Post-op Callback &amp; PONV Follow-up</h3><p>Automated 24-hr and 72-hr post-op outreach, escalated to the same provider who cleared the case. Closes the QI loop, surfaces complications early.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">2028</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 5</div><h3>Chronic Pain Pre-procedure</h3><p>Same workflow, expanded indication: pre-procedure clearance for interventional pain centers. ~9,000 pain clinics in the US.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">2028</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 6</div><h3>Credentialing &amp; Payer Enrollment SaaS</h3><p>The ops engine we built to onboard our own provider network, productized. Sell to anesthesia groups, telehealth networks, and locums agencies.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">2029</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 7</div><h3>Scheduling &amp; OR Optimization</h3><p>Reuse the case data and outcome history to optimize OR block utilization, predict cancellation risk, and recommend case sequencing.</p></div>
+      </div>
+
+      <div class="roadmap-row">
+        <div class="roadmap-marker"><div class="roadmap-dot"></div><div class="roadmap-when">2030</div></div>
+        <div class="roadmap-card"><div class="phase">Phase 8</div><h3>Perioperative RCM</h3><p>Full revenue-cycle management for the perioperative episode — anesthesia billing, facility billing, denials management. 4–7% of collected revenue.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+===== END REMOVED ROADMAP ===== -->
+
+<!-- ===== MARKET SIZE ===== -->
+<section class="market" id="market">
+  <div class="container">
+    <div class="market-head">
+      <div class="section-label">Market Size</div>
+      <h2 class="section-heading">A $180B perioperative wedge.<br>$500M ARR by year five.</h2>
+      <p class="section-subtext">Pre-op is the smallest, sharpest cut into a system that spends hundreds of billions of dollars per year coordinating surgery. We start where the pain is most acute, then earn the right to expand into the rest of the perioperative episode.</p>
+    </div>
+
+    <div class="market-viz">
+      <div class="market-bars">
+        <div class="market-bar tam">
+          <div class="lbl">TAM · Global perioperative workflow</div>
+          <div class="val">$180B</div>
+          <div class="desc">Anesthesia services, pre-op coordination, perioperative software, and RCM worldwide.</div>
+        </div>
+        <div class="market-bar sam">
+          <div class="lbl">SAM · US virtual anesthesia layer</div>
+          <div class="val">$15B</div>
+          <div class="desc">~6,300 ASCs + 4,800 hospital outpatient surgical departments × the perioperative workflows that can move to a virtual marketplace.</div>
+        </div>
+        <div class="market-bar som">
+          <div class="lbl">SOM Y5 · LINCR realistic capture</div>
+          <div class="val">$500M ARR</div>
+          <div class="desc">1,500 facilities &middot; 25 states &middot; full product stack including billing-as-a-service and perioperative RCM.</div>
+        </div>
+      </div>
+
+      <div class="market-notes">
+        <div class="market-note">
+          <div class="k">Beachhead</div>
+          <div class="v">Georgia ASCs that currently skip formal pre-op. ~430 ASCs in-state, ~55% match the wedge profile, ~1,050 cases/yr median.</div>
+        </div>
+        <div class="market-note">
+          <div class="k">Y3 milestone</div>
+          <div class="v">$53M ARR — 200 facilities live, billing-as-a-service rolled out, day-of consult product in pilot.</div>
+        </div>
+        <div class="market-note">
+          <div class="k">Why now</div>
+          <div class="v">Anesthesia labor shortage + ASC volume growth + CMS reimbursement for telehealth consults all hit the same year.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUSINESS MODEL (removed) =====
+<section class="bizmodel" id="bizmodel">
+  <div class="container">
+    <div class="bizmodel-head">
+      <div class="section-label">Business Model</div>
+      <h2 class="section-heading">Four revenue streams,<br>stacked over five years.</h2>
+      <p class="section-subtext">Each phase keeps the prior one running. The ASC keeps paying $250/case for clearance even after billing-as-a-service goes live — we just stop being their only payer.</p>
+    </div>
+
+    <div class="bizmodel-grid">
+      <div class="bizmodel-card live">
+        <div class="phase">Phase 1 · Live</div>
+        <h3>Per-case marketplace fee</h3>
+        <div class="price">$250<span class="sub">/ case</span></div>
+        <p>Facility pays. Provider keeps $150, LINCR keeps $100. Simple, predictable, no insurance friction.</p>
+        <div class="when">Now</div>
+      </div>
+
+      <div class="bizmodel-card">
+        <div class="phase">Phase 2</div>
+        <h3>Billing-as-a-Service</h3>
+        <div class="price">~$115<span class="sub">/ case net</span></div>
+        <p>LINCR bills payer for the consult. Provider take-home rises to ~$250, LINCR earns an 8–12% billing fee plus the marketplace cut.</p>
+        <div class="when">Q3 2026</div>
+      </div>
+
+      <div class="bizmodel-card">
+        <div class="phase">Phase 3</div>
+        <h3>Facility subscription</h3>
+        <div class="price">$3–8k<span class="sub">/ mo</span></div>
+        <p>For high-volume ASCs and ASC chains: unlimited clearances, priority routing, SLA, dedicated provider pool, custom reporting.</p>
+        <div class="when">2027</div>
+      </div>
+
+      <div class="bizmodel-card">
+        <div class="phase">Phase 4</div>
+        <h3>Perioperative RCM share</h3>
+        <div class="price">4–7%<span class="sub">of collected</span></div>
+        <p>Full revenue-cycle management for the perioperative episode. The most expensive product, sold only after we've earned the workflow.</p>
+        <div class="when">2030</div>
+      </div>
+    </div>
+  </div>
+</section>
+===== END REMOVED BUSINESS MODEL ===== -->
 
 <!-- ===== FOUNDER ===== -->
 <section class="founder" id="founder">
