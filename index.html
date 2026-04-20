@@ -357,6 +357,14 @@ img{max-width:100%;display:block}
 }
 .footer-copy{font-size:.8rem;color:var(--text-muted)}
 .footer-patent{font-size:.75rem;color:var(--text-muted)}
+.footer-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--mono);font-size:.7rem;font-weight:400;
+  color:var(--accent);padding:6px 14px;
+  border:1px solid rgba(20,184,166,.35);border-radius:999px;
+  background:rgba(20,184,166,.06);
+}
+.footer-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
@@ -429,10 +437,6 @@ img{max-width:100%;display:block}
 <section class="hero" id="hero">
   <div class="hero-grid"></div>
   <div class="container hero-content">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Perplexity Billion Dollar Build 2026
-    </div>
     <h1>Surgical Clearance,<br>On Demand</h1>
     <p class="hero-sub">LINCR connects surgery centers with anesthesia providers for pre-anesthesia evaluation and surgical clearance — one product, one closed loop.</p>
     <div class="hero-cta">
@@ -870,7 +874,10 @@ img{max-width:100%;display:block}
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 LINCR. All rights reserved.</span>
-
+      <div class="footer-badge">
+        <span class="dot"></span>
+        Perplexity Billion Dollar Build 2026
+      </div>
     </div>
   </div>
 </footer>
