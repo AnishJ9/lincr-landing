@@ -3,158 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LINCR — Interactive Demo</title>
-<meta name="description" content="Walk through LINCR as a surgery center, an anesthesia provider, or a patient. Live demo environment — no real patient data.">
+<title>LINCR — See the Platform Live</title>
+<meta name="description" content="Step through LINCR from any side of the table — the surgery center, the anesthesiologist, or the patient. See how pre-anesthesia clearance happens in hours instead of days.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LINCR — See the Platform Live">
+<meta property="og:description" content="Pre-anesthesia clearance, on demand. Step through the live platform from any role.">
+<meta property="og:url" content="https://lincr.io/demo">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
 body{
   font-family:'Inter',system-ui,sans-serif;
   background:#0b0d0f;color:#f1f5f9;
-  min-height:100vh;line-height:1.6;
+  min-height:100vh;line-height:1.6;font-weight:400;
 }
+img{max-width:100%;display:block}
 
-/* ===== Tokens (match main site) ===== */
 :root{
   --bg:#0b0d0f; --surface:#141719; --surface-2:#1a1d20;
   --border:#1e2225; --border-strong:#2a2f34;
-  --accent:#14b8a6; --accent-hover:#0d9488; --accent-glow:rgba(20,184,166,.15);
+  --accent:#14b8a6; --accent-hover:#0d9488;
   --text-primary:#f1f5f9; --text-secondary:#94a3b8; --text-muted:#64748b;
-  --mono:'JetBrains Mono','Courier New',monospace;
+  --mono:'JetBrains Mono',monospace;
 }
 
 a{color:inherit;text-decoration:none}
-ul{list-style:none}
 
-/* ===== Layout ===== */
+/* ===== Nav ===== */
 .nav{
-  height:72px;display:flex;align-items:center;
+  height:72px;display:flex;align-items:center;gap:2rem;
   padding:0 clamp(20px,5vw,80px);
   border-bottom:1px solid var(--border);
   background:rgba(11,13,15,.85);backdrop-filter:blur(10px);
   position:sticky;top:0;z-index:10;
 }
-.nav a.brand{
-  font-family:var(--mono);font-size:1rem;font-weight:600;
-  letter-spacing:.1em;color:var(--text-primary);
+.nav .brand{
+  font-weight:600;font-size:1.05rem;letter-spacing:.02em;
+  color:var(--text-primary);
 }
-.nav a.brand:hover{color:var(--accent)}
-.nav a.back{
-  margin-left:auto;font-size:.85rem;color:var(--text-muted);
-  font-family:var(--mono);
+.nav .brand:hover{color:var(--accent)}
+.nav .back{
+  margin-left:auto;font-size:.9rem;color:var(--text-secondary);
 }
-.nav a.back:hover{color:var(--text-secondary)}
+.nav .back:hover{color:var(--text-primary)}
 
-main{
-  max-width:1100px;margin:0 auto;
-  padding:clamp(48px,8vw,96px) clamp(20px,5vw,80px);
+/* ===== Hero ===== */
+.hero{
+  text-align:center;
+  padding:clamp(64px,10vw,120px) clamp(20px,5vw,80px) clamp(40px,6vw,72px);
+  max-width:880px;margin:0 auto;
+}
+.hero .eyebrow{
+  display:inline-block;
+  font-size:.8rem;font-weight:500;letter-spacing:.1em;
+  color:var(--accent);
+  background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.2);
+  padding:.4rem 1rem;border-radius:999px;
+  margin-bottom:1.5rem;
+}
+.hero h1{
+  font-size:clamp(2.25rem,5.5vw,3.75rem);
+  font-weight:300;line-height:1.1;letter-spacing:-.02em;
+  margin-bottom:1.25rem;
+}
+.hero h1 em{
+  font-style:normal;color:var(--accent);
+}
+.hero .lede{
+  font-size:clamp(1.05rem,1.5vw,1.2rem);
+  color:var(--text-secondary);
+  max-width:620px;margin:0 auto;line-height:1.6;
+}
+.hero .stats{
+  display:flex;justify-content:center;gap:clamp(1.5rem,4vw,3rem);
+  margin-top:2.5rem;flex-wrap:wrap;
+}
+.hero .stat{text-align:center}
+.hero .stat .num{
+  font-size:clamp(1.5rem,2.5vw,2rem);
+  font-weight:300;color:var(--text-primary);
+  display:block;line-height:1;
+}
+.hero .stat .lbl{
+  font-size:.78rem;color:var(--text-muted);
+  letter-spacing:.08em;text-transform:uppercase;
+  margin-top:.5rem;display:block;
 }
 
-/* ===== Header ===== */
-.eyebrow{
-  font-family:var(--mono);font-size:.8rem;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
-  margin-bottom:1rem;
-}
-h1{
-  font-size:clamp(2rem,5vw,3.25rem);font-weight:300;line-height:1.1;
-  color:var(--text-primary);margin-bottom:1rem;letter-spacing:-.02em;
-}
-.lede{
-  font-size:clamp(1rem,1.4vw,1.15rem);color:var(--text-secondary);
-  max-width:680px;line-height:1.65;
+/* ===== Personas ===== */
+.personas{
+  max-width:1200px;margin:0 auto;
+  padding:clamp(32px,5vw,64px) clamp(20px,5vw,80px);
+  display:flex;flex-direction:column;gap:clamp(32px,4vw,48px);
 }
 
-/* ===== Cards ===== */
-.grid{
-  display:grid;gap:1.25rem;margin-top:3rem;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-}
-.card{
+.persona{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:clamp(24px,4vw,56px);
+  align-items:center;
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:clamp(24px,3vw,32px);
-  display:flex;flex-direction:column;gap:1rem;
-  transition:border-color .2s ease, transform .2s ease, background .2s ease;
-  position:relative;
+  border-radius:20px;
+  padding:clamp(28px,4vw,56px);
+  transition:border-color .25s ease;
 }
-.card:hover{
-  border-color:var(--accent);
-  background:var(--surface-2);
-  transform:translateY(-2px);
+.persona:hover{border-color:var(--border-strong)}
+.persona.reverse{grid-template-columns:1fr 1.1fr}
+.persona.reverse .copy{order:2}
+.persona.reverse .visual{order:1}
+
+.persona .copy{display:flex;flex-direction:column;gap:1.25rem}
+.persona .tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.75rem;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);
+  align-self:flex-start;
 }
-.card .role{
-  font-family:var(--mono);font-size:.75rem;font-weight:500;
-  letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+.persona .tag::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--accent);
 }
-.card h3{
-  font-size:1.35rem;font-weight:500;color:var(--text-primary);
-  line-height:1.25;
+.persona h2{
+  font-size:clamp(1.6rem,3vw,2.15rem);
+  font-weight:400;line-height:1.2;letter-spacing:-.01em;
+  color:var(--text-primary);
 }
-.card p{
-  color:var(--text-secondary);font-size:.95rem;line-height:1.6;
-  flex:1;
+.persona .desc{
+  color:var(--text-secondary);font-size:1rem;line-height:1.65;
+  max-width:460px;
 }
-.card ul.steps{
-  display:flex;flex-direction:column;gap:.4rem;
-  font-size:.85rem;color:var(--text-muted);
-  font-family:var(--mono);
-}
-.card ul.steps li{
-  padding-left:1.2rem;position:relative;
-}
-.card ul.steps li::before{
-  content:"\2192";position:absolute;left:0;color:var(--accent);
-}
-.card .hint{
-  margin-top:auto;
-  padding:.75rem .9rem;
+.persona .outcome{
+  display:flex;gap:.75rem;align-items:flex-start;
+  padding:1rem 1.1rem;
   background:rgba(20,184,166,.06);
-  border:1px solid rgba(20,184,166,.2);
-  border-radius:10px;
-  font-family:var(--mono);font-size:.78rem;color:var(--text-secondary);
-  line-height:1.5;word-break:break-word;
+  border-left:2px solid var(--accent);
+  border-radius:6px;
+  font-size:.95rem;color:var(--text-primary);
+  line-height:1.55;
 }
-.card .hint .label{
-  display:block;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:.25rem;
-}
-.card .cta{
-  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  margin-top:.25rem;
-  font-weight:500;font-size:.95rem;
-  padding:12px 20px;border-radius:12px;
+.persona .outcome strong{color:var(--accent);font-weight:500}
+
+.persona .cta{
+  display:inline-flex;align-items:center;gap:.5rem;
+  align-self:flex-start;
+  font-size:1rem;font-weight:500;
+  padding:14px 28px;border-radius:12px;
   background:var(--accent);color:#0b0d0f;
-  transition:background .2s ease;
-  cursor:pointer;border:none;
+  border:none;cursor:pointer;
+  transition:all .2s ease;
+  margin-top:.25rem;
 }
-.card .cta:hover{background:var(--accent-hover)}
-.card .cta.ghost{
-  background:transparent;color:var(--accent);
-  border:1px solid var(--accent);
+.persona .cta:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.persona .cta[disabled]{
+  background:var(--surface-2);color:var(--text-muted);
+  cursor:wait;transform:none;
 }
-.card .cta.ghost:hover{background:rgba(20,184,166,.08);color:var(--accent)}
-.card .cta[disabled]{
-  background:var(--border);color:var(--text-muted);cursor:not-allowed;
-  border-color:var(--border);
+.persona .cta .arrow{transition:transform .2s ease}
+.persona .cta:hover .arrow{transform:translateX(3px)}
+
+.persona .visual{
+  position:relative;
+  border-radius:12px;overflow:hidden;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  aspect-ratio:16/10;
+}
+.persona .visual img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+}
+.persona .visual .glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at top,rgba(20,184,166,.08),transparent 60%);
+  pointer-events:none;
 }
 
-/* ===== Footer note ===== */
-.footnote{
-  margin-top:3rem;padding-top:2rem;
+/* ===== Closer ===== */
+.closer{
+  text-align:center;
+  padding:clamp(48px,6vw,80px) clamp(20px,5vw,80px);
+  max-width:720px;margin:0 auto;
+}
+.closer h3{
+  font-size:clamp(1.4rem,2.5vw,1.75rem);
+  font-weight:400;line-height:1.25;
+  color:var(--text-primary);margin-bottom:1rem;
+}
+.closer p{
+  color:var(--text-secondary);font-size:1rem;
+  line-height:1.65;margin-bottom:1.75rem;
+}
+.closer .cta-row{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.closer .btn-ghost{
+  padding:12px 24px;border-radius:12px;
+  border:1px solid var(--border-strong);
+  color:var(--text-primary);font-weight:500;
+  transition:all .2s ease;
+}
+.closer .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+footer{
+  padding:2rem clamp(20px,5vw,80px) 3rem;
   border-top:1px solid var(--border);
-  font-size:.82rem;color:var(--text-muted);line-height:1.7;
+  text-align:center;
+  color:var(--text-muted);font-size:.85rem;
 }
-.footnote strong{color:var(--text-secondary);font-weight:500}
 
-@media (max-width:640px){
-  .grid{grid-template-columns:1fr}
-  h1{font-size:2rem}
+/* ===== Responsive ===== */
+@media (max-width:840px){
+  .persona, .persona.reverse{
+    grid-template-columns:1fr;
+    gap:1.75rem;
+  }
+  .persona.reverse .copy{order:1}
+  .persona.reverse .visual{order:2}
+  .persona .visual{aspect-ratio:16/11}
+}
+@media (max-width:480px){
+  .hero .stats{gap:1.25rem}
 }
 </style>
 </head>
@@ -162,117 +232,139 @@ h1{
 
 <nav class="nav">
   <a class="brand" href="/">LINCR</a>
-  <a class="back" href="/">&larr; back to lincr.io</a>
+  <a class="back" href="/">&larr; Back to overview</a>
 </nav>
 
-<main>
-  <div class="eyebrow">Interactive Demo</div>
-  <h1>Pick a role to step through.</h1>
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="eyebrow">Interactive demo</span>
+  <h1>Pre-anesthesia clearance,<br/><em>on demand.</em></h1>
   <p class="lede">
-    LINCR connects three experiences. Each card below drops you into the live demo app from that persona's starting point. No real patient data &mdash; everything you see is synthetic.
+    Step through the live platform from any side of the table &mdash; the surgery center posting the case, the anesthesiologist who clears it, or the patient completing their intake from home.
   </p>
 
-  <div class="grid">
+  <div class="stats">
+    <div class="stat">
+      <span class="num">&lt; 1 hr</span>
+      <span class="lbl">Median time to clearance</span>
+    </div>
+    <div class="stat">
+      <span class="num">0</span>
+      <span class="lbl">In-person pre-op visits</span>
+    </div>
+    <div class="stat">
+      <span class="num">3 roles</span>
+      <span class="lbl">One coordinated workflow</span>
+    </div>
+  </div>
+</section>
 
-    <!-- FACILITY -->
-    <article class="card">
-      <span class="role">Surgery Center</span>
-      <h3>Post a case &amp; track clearance</h3>
-      <p>
-        You run a surgery center. You have a patient who needs pre-anesthesia clearance. Post the case, send the patient an SMS intake link, watch a provider claim it, and receive the signed clearance PDF.
+<!-- ===== PERSONAS ===== -->
+<section class="personas">
+
+  <!-- FACILITY -->
+  <article class="persona">
+    <div class="copy">
+      <span class="tag">For the surgery center</span>
+      <h2>Never cancel a case for missing clearance again.</h2>
+      <p class="desc">
+        Post a case in under a minute. The patient gets a text to complete their intake from their couch. An anesthesiologist claims the case, conducts the pre-op visit by video, and signs the clearance note. You get a signed PDF ready for the chart &mdash; before the patient ever arrives.
       </p>
-      <ul class="steps">
-        <li>See the open cases queue</li>
-        <li>Post a new case</li>
-        <li>Watch status: submitted &rarr; claimed &rarr; cleared</li>
-      </ul>
-      <div class="hint">
-        <span class="label">Sign in as</span>
-        demo.facility@lincr.io
+      <div class="outcome">
+        <span><strong>Outcome:</strong> Every patient walks in cleared. Zero same-day cancellations from missed pre-ops.</span>
       </div>
       <a class="cta" href="https://app.lincr.io/sign-in" data-role="facility">
-        Launch facility view &rarr;
+        See the facility experience
+        <span class="arrow">&rarr;</span>
       </a>
-    </article>
+    </div>
+    <div class="visual">
+      <img src="../images/facility-4-cases.png" alt="LINCR facility dashboard showing active cases awaiting clearance" loading="lazy">
+      <div class="glow"></div>
+    </div>
+  </article>
 
-    <!-- PROVIDER -->
-    <article class="card">
-      <span class="role">Anesthesia Provider</span>
-      <h3>Claim a case &amp; run the visit</h3>
-      <p>
-        You're a board-certified anesthesiologist. Browse the open case marketplace, claim the one that fits your window, run the video pre-op visit, assign an ASA class, sign the note, and the clearance PDF is generated automatically.
+  <!-- PROVIDER -->
+  <article class="persona reverse">
+    <div class="copy">
+      <span class="tag">For the anesthesiologist</span>
+      <h2>Billable hours between surgery days.</h2>
+      <p class="desc">
+        Browse open cases from ambulatory surgery centers in your state. Claim the ones that fit your schedule, review the patient's intake, and conduct the pre-op visit on video &mdash; 15 minutes from your home office. Sign the note; get paid per case.
       </p>
-      <ul class="steps">
-        <li>Browse open cases</li>
-        <li>Claim and launch the video visit</li>
-        <li>Sign the note &rarr; PDF delivered</li>
-      </ul>
-      <div class="hint">
-        <span class="label">Sign in as</span>
-        demo.provider@lincr.io
+      <div class="outcome">
+        <span><strong>Outcome:</strong> Turn spare afternoons into a second revenue stream. No credentialing paperwork per facility.</span>
       </div>
       <a class="cta" href="https://app.lincr.io/sign-in" data-role="provider">
-        Launch provider view &rarr;
+        See the provider experience
+        <span class="arrow">&rarr;</span>
       </a>
-    </article>
+    </div>
+    <div class="visual">
+      <img src="../provider-2-dashboard.png" alt="LINCR provider dashboard showing marketplace of open cases and active claims" loading="lazy">
+      <div class="glow"></div>
+    </div>
+  </article>
 
-    <!-- PATIENT -->
-    <article class="card">
-      <span class="role">Patient</span>
-      <h3>Complete your pre-op intake</h3>
-      <p>
-        You're the patient. Your surgery center texted you a link. No password, no app download &mdash; just a short form to share your medical history, medications, and lifestyle so your anesthesiologist can clear you before surgery day.
+  <!-- PATIENT -->
+  <article class="persona">
+    <div class="copy">
+      <span class="tag">For the patient</span>
+      <h2>Your pre-op visit. Without the drive.</h2>
+      <p class="desc">
+        A text from your surgery center is all it takes. Tap the link, answer a few questions about your medications and history, and meet your anesthesiologist on a video call &mdash; often the same day. No app to download. No extra trip to the hospital before your actual procedure.
       </p>
-      <ul class="steps">
-        <li>Open the intake link (no login)</li>
-        <li>Answer a few screening questions</li>
-        <li>Submit &rarr; provider gets notified</li>
-      </ul>
-      <div class="hint">
-        <span class="label">Token-authed</span>
-        Link is fetched live from the demo API
+      <div class="outcome">
+        <span><strong>Outcome:</strong> Patients complete pre-op in 12 minutes from home &mdash; instead of a half-day trip.</span>
       </div>
-      <a class="cta ghost" id="patientCta" href="#" data-role="patient">
-        Launch patient intake &rarr;
+      <a class="cta" id="patientCta" href="#" data-role="patient">
+        See the patient experience
+        <span class="arrow">&rarr;</span>
       </a>
-    </article>
+    </div>
+    <div class="visual">
+      <img src="../patient-4-welcome.png" alt="LINCR patient intake flow welcome screen on a mobile device" loading="lazy">
+      <div class="glow"></div>
+    </div>
+  </article>
 
-  </div>
+</section>
 
-  <p class="footnote">
-    <strong>About this environment.</strong> The demo runs against a live deployment with one seeded facility, one seeded provider, and one open case. Sign-in credentials are shared by the LINCR team; the patient link is generated dynamically. If something looks off, it's probably because the seed was just re-run &mdash; refresh and try again.
+<!-- ===== CLOSER ===== -->
+<section class="closer">
+  <h3>Want to talk about bringing LINCR to your surgery center?</h3>
+  <p>
+    We're onboarding ambulatory surgery centers in Georgia now. If you handle pre-anesthesia clearance and you've ever had to reschedule a case for it, we'd love 15 minutes of your time.
   </p>
-</main>
+  <div class="cta-row">
+    <a class="btn-ghost" href="mailto:anish@lincr.io?subject=LINCR%20%E2%80%94%20interested%20in%20a%20conversation">
+      anish@lincr.io
+    </a>
+    <a class="btn-ghost" href="/#founder">About the founder</a>
+  </div>
+</section>
+
+<footer>
+  Demo environment &middot; no real patient data is used or stored.
+</footer>
 
 <script>
-  // Patient tile: fetch the live demo intake token at click time.
-  // Falls back to a helpful "demo not up yet" state if the API is
-  // unreachable or the backend isn't seeded.
+  // Patient CTA: fetch the current demo intake token at click time so the
+  // deep-link survives re-seeds. Graceful fallback if the API isn't reachable.
   (function(){
     var API_BASE = "https://api.lincr.io";
     var btn = document.getElementById("patientCta");
     if (!btn) return;
 
-    var fetchedHref = null;
-
-    function setLoading() {
-      btn.textContent = "Finding demo case\u2026";
-      btn.setAttribute("disabled", "disabled");
-    }
-    function setReady() {
-      btn.textContent = "Launch patient intake \u2192";
-      btn.removeAttribute("disabled");
-    }
-    function setError(msg) {
-      btn.textContent = msg;
-      btn.setAttribute("disabled", "disabled");
-    }
+    var resolvedHref = null;
 
     btn.addEventListener("click", function(e){
-      // If we've already resolved the href, let the native anchor navigation happen.
-      if (fetchedHref) return;
+      if (resolvedHref) return; // already resolved, let the anchor navigate
       e.preventDefault();
-      setLoading();
+      var originalHTML = btn.innerHTML;
+      btn.setAttribute("disabled", "disabled");
+      btn.innerHTML = "Loading\u2026";
+
       fetch(API_BASE + "/api/demo/intake-link", { mode: "cors", credentials: "omit" })
         .then(function(r){
           if (!r.ok) throw new Error("status " + r.status);
@@ -280,13 +372,14 @@ h1{
         })
         .then(function(data){
           if (!data || !data.patientAccessToken) throw new Error("no token");
-          fetchedHref = "https://app.lincr.io/patient/" + encodeURIComponent(data.patientAccessToken);
-          btn.setAttribute("href", fetchedHref);
-          setReady();
-          window.location.href = fetchedHref;
+          resolvedHref = "https://app.lincr.io/patient/" + encodeURIComponent(data.patientAccessToken);
+          btn.setAttribute("href", resolvedHref);
+          btn.innerHTML = originalHTML;
+          btn.removeAttribute("disabled");
+          window.location.href = resolvedHref;
         })
         .catch(function(){
-          setError("Demo not live yet \u2014 check back soon");
+          btn.innerHTML = "Demo starting soon \u2014 check back shortly";
         });
     });
   })();

@@ -406,6 +406,7 @@ img{max-width:100%;display:block}
       <a href="#product">LINCR</a>
       <a href="#demo">Demo</a>
       <a href="#founder">Founder</a>
+      <a href="#waitlist">Waitlist</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="burger" id="burger" aria-label="Menu" role="button" tabindex="0">
@@ -420,6 +421,7 @@ img{max-width:100%;display:block}
   <a href="#product">LINCR</a>
   <a href="#demo">Demo</a>
   <a href="#founder">Founder</a>
+  <a href="#waitlist">Waitlist</a>
   <a href="#contact">Contact</a>
 </div>
 
@@ -583,6 +585,262 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
+<!-- ===== WAITLIST ===== -->
+<style>
+.waitlist{padding:var(--section-gap) 0;border-top:1px solid var(--border)}
+.waitlist .inner{max-width:720px;margin:0 auto;text-align:center}
+.waitlist .section-subtext{margin:0 auto 2.5rem}
+.wl-toggle{
+  display:inline-flex;gap:.25rem;padding:.35rem;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;margin-bottom:2rem;
+}
+.wl-toggle button{
+  font-family:'Inter',sans-serif;font-size:.92rem;font-weight:500;
+  padding:.7rem 1.4rem;border-radius:10px;cursor:pointer;
+  background:transparent;color:var(--text-secondary);border:none;
+  transition:all .2s ease;
+}
+.wl-toggle button:hover{color:var(--text-primary)}
+.wl-toggle button.active{
+  background:var(--accent);color:#0b0d0f;font-weight:500;
+}
+.wl-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  text-align:left;max-width:560px;margin:0 auto;
+}
+.wl-form .full{grid-column:1 / -1}
+.wl-field{display:flex;flex-direction:column;gap:.4rem}
+.wl-field label{
+  font-size:.78rem;font-weight:500;color:var(--text-secondary);
+  letter-spacing:.02em;
+}
+.wl-field input, .wl-field select{
+  font-family:'Inter',sans-serif;font-size:.95rem;
+  padding:13px 16px;border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--surface);color:var(--text-primary);
+  outline:none;width:100%;
+  transition:border-color .15s ease;
+}
+.wl-field input:focus, .wl-field select:focus{border-color:var(--accent)}
+.wl-field input::placeholder{color:var(--text-muted)}
+.wl-field select{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:40px;
+}
+.wl-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.wl-submit{
+  grid-column:1 / -1;margin-top:.5rem;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;
+  padding:15px 28px;border-radius:12px;cursor:pointer;
+  background:var(--accent);color:#0b0d0f;border:none;
+  transition:all .2s ease;
+}
+.wl-submit:hover:not(:disabled){background:var(--accent-hover);transform:translateY(-1px)}
+.wl-submit:disabled{opacity:.6;cursor:wait;transform:none}
+.wl-status{
+  grid-column:1 / -1;margin-top:.5rem;min-height:1.25rem;
+  font-size:.88rem;line-height:1.5;text-align:center;
+}
+.wl-status.error{color:#f87171}
+.wl-status.success{color:var(--accent)}
+.wl-success{
+  max-width:480px;margin:0 auto;text-align:center;
+  padding:2rem;background:var(--surface);
+  border:1px solid rgba(20,184,166,.3);border-radius:14px;
+}
+.wl-success h3{
+  font-size:1.25rem;font-weight:500;color:var(--text-primary);
+  margin-bottom:.5rem;
+}
+.wl-success p{color:var(--text-secondary);font-size:.95rem;line-height:1.6}
+.wl-role-label{
+  font-size:.82rem;color:var(--text-muted);
+  margin-bottom:.25rem;display:block;
+}
+@media (max-width:560px){
+  .wl-form{grid-template-columns:1fr}
+}
+</style>
+<section class="waitlist" id="waitlist">
+  <div class="container">
+    <div class="inner">
+      <div class="section-label">Get Early Access</div>
+      <h2 class="section-heading">Be first when LINCR opens in your state.</h2>
+      <p class="section-subtext">We're onboarding a short list of surgery centers and anesthesia providers for our pilot. Tell us which side you're on and we'll reach out when we're live in your area.</p>
+
+      <div class="wl-toggle" role="tablist" aria-label="Select your role">
+        <button type="button" class="active" data-role="facility" role="tab" aria-selected="true">I represent a surgery center</button>
+        <button type="button" data-role="provider" role="tab" aria-selected="false">I'm an anesthesia provider</button>
+      </div>
+
+      <form class="wl-form" id="waitlistForm" novalidate>
+        <!-- Honeypot — hidden from real humans, catches naive bots -->
+        <input class="wl-hp" type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="wl-field full">
+          <label for="wlName">Your name</label>
+          <input id="wlName" name="name" type="text" required autocomplete="name" placeholder="Jane Doe">
+        </div>
+
+        <div class="wl-field full">
+          <label for="wlEmail">Email</label>
+          <input id="wlEmail" name="email" type="email" required autocomplete="email" placeholder="you@work-email.com">
+        </div>
+
+        <!-- Facility-only fields -->
+        <div class="wl-field full" data-role-only="facility">
+          <label for="wlFacility">Surgery center name</label>
+          <input id="wlFacility" name="facilityName" type="text" placeholder="Atlanta Surgery Center">
+        </div>
+        <div class="wl-field" data-role-only="facility">
+          <label for="wlRoleAt">Your role</label>
+          <input id="wlRoleAt" name="roleAtFacility" type="text" placeholder="Administrator, Medical Director…">
+        </div>
+        <div class="wl-field" data-role-only="facility">
+          <label for="wlVolume">Monthly cases (optional)</label>
+          <input id="wlVolume" name="monthlyVolume" type="number" min="0" placeholder="e.g. 120">
+        </div>
+
+        <!-- Provider-only fields -->
+        <div class="wl-field" data-role-only="provider" style="display:none">
+          <label for="wlCreds">Credentials</label>
+          <select id="wlCreds" name="credentials">
+            <option value="">Select…</option>
+            <option value="MD">MD</option>
+            <option value="DO">DO</option>
+            <option value="CRNA">CRNA</option>
+            <option value="AA">AA (Anesthesiologist Assistant)</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+        <div class="wl-field" data-role-only="provider" style="display:none">
+          <label for="wlStates">Licensed in (e.g. GA, FL)</label>
+          <input id="wlStates" name="states" type="text" placeholder="GA, FL, TN" autocomplete="off">
+        </div>
+
+        <button class="wl-submit" type="submit" id="wlSubmit">Join the waitlist</button>
+        <div class="wl-status" id="wlStatus" role="status" aria-live="polite"></div>
+      </form>
+
+      <div class="wl-success" id="wlSuccess" style="display:none">
+        <h3>You're on the list.</h3>
+        <p id="wlSuccessMsg">We'll reach out directly when LINCR opens in your area. Questions in the meantime — <a href="mailto:anish@lincr.io" style="color:var(--accent)">anish@lincr.io</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var API_BASE = "https://api.lincr.io";
+  var form = document.getElementById("waitlistForm");
+  var toggle = document.querySelectorAll(".wl-toggle button");
+  var statusEl = document.getElementById("wlStatus");
+  var submitBtn = document.getElementById("wlSubmit");
+  var successEl = document.getElementById("wlSuccess");
+  var currentRole = "facility";
+
+  function setRole(role){
+    currentRole = role;
+    toggle.forEach(function(btn){
+      var on = btn.dataset.role === role;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    document.querySelectorAll("[data-role-only]").forEach(function(el){
+      el.style.display = (el.dataset.roleOnly === role) ? "" : "none";
+      el.querySelectorAll("input, select").forEach(function(input){
+        // Clear hidden fields so we don't send stale data
+        if (el.dataset.roleOnly !== role) input.value = "";
+      });
+    });
+    statusEl.textContent = "";
+    statusEl.className = "wl-status";
+  }
+
+  toggle.forEach(function(btn){
+    btn.addEventListener("click", function(){ setRole(btn.dataset.role); });
+  });
+
+  function setStatus(msg, kind){
+    statusEl.textContent = msg || "";
+    statusEl.className = "wl-status" + (kind ? " " + kind : "");
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    setStatus("");
+
+    var data = new FormData(form);
+    var name = (data.get("name") || "").toString().trim();
+    var email = (data.get("email") || "").toString().trim();
+    var hp = (data.get("hp") || "").toString();
+
+    if (!name || name.length < 2) return setStatus("Please enter your name.", "error");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus("Please enter a valid email.", "error");
+
+    var details;
+    if (currentRole === "facility") {
+      var facilityName = (data.get("facilityName") || "").toString().trim();
+      var roleAt = (data.get("roleAtFacility") || "").toString().trim();
+      var volRaw = (data.get("monthlyVolume") || "").toString().trim();
+      if (!facilityName || facilityName.length < 2) return setStatus("Please enter your surgery center's name.", "error");
+      if (!roleAt || roleAt.length < 2) return setStatus("Please enter your role.", "error");
+      details = { facilityName: facilityName, roleAtFacility: roleAt };
+      if (volRaw) {
+        var n = parseInt(volRaw, 10);
+        if (!isNaN(n) && n >= 0) details.monthlyVolume = n;
+      }
+    } else {
+      var creds = (data.get("credentials") || "").toString();
+      var statesRaw = (data.get("states") || "").toString().trim();
+      if (!creds) return setStatus("Please select your credentials.", "error");
+      var states = statesRaw.split(/[,\s]+/).map(function(s){ return s.toUpperCase().trim(); }).filter(function(s){ return s.length === 2; });
+      if (states.length === 0) return setStatus("Please enter at least one state (e.g. GA, FL).", "error");
+      details = { credentials: creds, states: states };
+    }
+
+    var payload = { role: currentRole, name: name, email: email, details: details, hp: hp };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Joining…";
+    fetch(API_BASE + "/api/waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      mode: "cors",
+      credentials: "omit",
+    })
+    .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, body: j }; }); })
+    .then(function(res){
+      if (!res.ok) {
+        var msg = "Something went wrong. Please try again.";
+        if (res.body && res.body.issues && res.body.issues[0]) msg = res.body.issues[0].message;
+        setStatus(msg, "error");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Join the waitlist";
+        return;
+      }
+      form.style.display = "none";
+      document.querySelector(".wl-toggle").style.display = "none";
+      successEl.style.display = "block";
+      if (res.body && res.body.alreadyExists) {
+        document.getElementById("wlSuccessMsg").innerHTML =
+          "You were already on the list — we've updated your details. We'll reach out when LINCR opens in your area. Questions? <a href='mailto:anish@lincr.io' style='color:var(--accent)'>anish@lincr.io</a>.";
+      }
+    })
+    .catch(function(){
+      setStatus("Couldn't reach the server. Please try again in a moment.", "error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Join the waitlist";
+    });
+  });
+})();
+</script>
+
 <!-- ===== FOOTER ===== -->
 <footer class="footer" id="contact">
   <div class="container">
@@ -605,8 +863,8 @@ img{max-width:100%;display:block}
       <div class="footer-nav">
         <a href="#platform">Platform</a>
         <a href="#product">LINCR</a>
-
         <a href="#founder">Founder</a>
+        <a href="#waitlist">Waitlist</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
