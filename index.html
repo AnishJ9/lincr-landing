@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LINCR-SMS — Stop preventable same-day surgery cancellations</title>
+  <meta name="description" content="A clinical safety layer for ambulatory surgery. CSV-in, stateful SMS for NPO, medication holds, and arrival logistics. Flag only the patients who need a human." />
+  <meta property="og:title" content="LINCR-SMS — Surgical clearance, on time, by SMS." />
+  <meta property="og:description" content="Stop preventable same-day surgery cancellations. NPO. Medication holds. Arrival logistics. Keep your PMS, export a CSV — LINCR handles pre-op from there." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B0D0F'/%3E%3Crect x='5' y='8' width='3' height='16' fill='%2314B8A6'/%3E%3Crect x='10' y='8' width='3' height='16' fill='%23F1F5F9'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@400,500,600&display=swap" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="brand" aria-label="LINCR-SMS home">
+        <svg class="brand__mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="5" y="8" width="3" height="16" fill="#14B8A6" />
+          <rect x="10" y="8" width="3" height="16" fill="currentColor" />
+          <rect x="15" y="8" width="3" height="16" fill="currentColor" />
+          <rect x="20" y="8" width="3" height="16" fill="currentColor" />
+          <rect x="25" y="8" width="3" height="16" fill="currentColor" />
+        </svg>
+        <span class="brand__word">LINCR<span class="brand__sep">–</span>SMS</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#problem">Problem</a>
+        <a href="#how">How it works</a>
+        <a href="#roi">ROI</a>
+        <a href="#founder">Founder</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn--primary nav__cta" href="#cta">Book a 15-min pilot call</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="tag" data-reveal><span class="tag__bar"></span>CLINICAL SAFETY LAYER FOR AMBULATORY SURGERY</div>
+        <h1 class="hero__title" data-reveal data-reveal-delay="1">
+          Stop preventable same-day<br />surgery cancellations.
+        </h1>
+        <p class="hero__sub" data-reveal data-reveal-delay="2">
+          Keep your PMS, EHR, and pre-op workflow. After clearance, export a CSV —
+          LINCR handles pre-op from there and flags only the patients who need a human.
+        </p>
+        <div class="hero__actions" data-reveal data-reveal-delay="3">
+          <a class="btn btn--primary" href="#cta">Book a 15-min pilot call</a>
+          <a class="btn btn--ghost" href="#how">See how it works →</a>
+        </div>
+        <div class="hero__stats" data-reveal data-reveal-delay="4">
+          <div>
+            <div class="stat__num">10%</div>
+            <div class="stat__lbl">of ASC cases cancel day-of</div>
+          </div>
+          <div>
+            <div class="stat__num">50–86%</div>
+            <div class="stat__lbl">of those cancellations are preventable</div>
+          </div>
+          <div>
+            <div class="stat__num">$200–360K</div>
+            <div class="stat__lbl">recoverable per ASC per year</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__rule" aria-hidden="true"></div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>01 · PROBLEM</div>
+          <h2 class="h2">
+            10% of ASC cases cancel day-of —
+            <span class="accent">most are preventable.</span>
+          </h2>
+          <p class="lead">
+            Three causes account for the majority of avoidable cancellations in ambulatory surgery.
+            LINCR-SMS closes all three.
+          </p>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card">
+            <div class="card__num">30–40%</div>
+            <div class="card__label">NPO VIOLATIONS</div>
+            <p class="card__body">
+              Patient ate or drank the wrong thing before surgery. Residual gastric content is
+              four to ten times higher in GLP-1 users even after standard fasting.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__num">20–25%</div>
+            <div class="card__label">MEDS CONFUSION</div>
+            <p class="card__body">
+              Held the wrong drug. Took one they should've held. Anticoagulants and antiplatelets
+              alone drive more than half of med-related day-of cancellations.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__num">10–15%</div>
+            <div class="card__label">ARRIVAL / NO-SHOW</div>
+            <p class="card__body">
+              Wrong time, wrong location, or the patient never showed. Patient logistics is the
+              single largest coded cancellation category in ASC industry data.
+            </p>
+          </article>
+        </div>
+
+        <p class="source">
+          Sources:
+          <a href="https://www.hstpathways.com/state-of-the-industry-2024" target="_blank" rel="noopener">HST Pathways 2024 State of the Industry</a>,
+          <a href="https://jamanetwork.com/journals/jamasurgery/fullarticle/2815663" target="_blank" rel="noopener">JAMA Surgery 2024</a>,
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12712017/" target="_blank" rel="noopener">World Journal of Urology 2025</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Cost strip -->
+    <section class="section section--tight" id="cost">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>02 · COST</div>
+          <h2 class="h2">
+            Each ASC loses
+            <span class="accent">$200–360K</span>
+            a year to preventable cancellations.
+          </h2>
+        </div>
+        <div class="grid grid--3">
+          <article class="card">
+            <div class="card__num">$1,430</div>
+            <div class="card__label">LOSS PER CANCELLATION</div>
+            <p class="card__body">$65/min × 22-min idle, the Bass &amp; Gill BMJ Quality Improvement benchmark.</p>
+          </article>
+          <article class="card">
+            <div class="card__num">140–260</div>
+            <div class="card__label">CANCELLATIONS / ASC / YR</div>
+            <p class="card__body">At 10% day-of-surgery rate on 1,400–2,600 annual cases per center.</p>
+          </article>
+          <article class="card">
+            <div class="card__num">9.8M</div>
+            <div class="card__label">US CANCELLATIONS / YEAR</div>
+            <p class="card__body">10% DoS rate across 97.8M US surgical and endoscopic procedures.</p>
+          </article>
+        </div>
+        <p class="source">
+          Sources:
+          <a href="https://bmjopenquality.bmj.com/" target="_blank" rel="noopener">BMJ Quality Improvement (Bass &amp; Gill 2014)</a>,
+          <a href="https://www.hstpathways.com/state-of-the-industry-2024" target="_blank" rel="noopener">HST Pathways 2024</a>,
+          <a href="https://www.medpac.gov/" target="_blank" rel="noopener">MedPAC 2026</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section--dark" id="how">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>03 · HOW IT WORKS</div>
+          <h2 class="h2">
+            Product flow in
+            <span class="accent">three steps.</span>
+          </h2>
+          <p class="lead">
+            No EHR integration. No retraining. Thirty seconds from export to queued.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <div class="step__num">01</div>
+            <h3 class="step__title">CSV Import</h3>
+            <p class="step__body">
+              Office uploads a CSV of cleared, scheduled patients. Or sync nightly via SFTP,
+              HST Data Stream, or a FHIR pull when you're ready.
+            </p>
+          </li>
+          <li class="step">
+            <div class="step__num">02</div>
+            <h3 class="step__title">Adaptive SMS</h3>
+            <p class="step__body">
+              Each patient gets a timed, stateful sequence anchored to surgery time: NPO reminders,
+              per-drug medication review, arrival confirmation. Two-way, branch-aware.
+            </p>
+          </li>
+          <li class="step">
+            <div class="step__num">03</div>
+            <h3 class="step__title">Exceptions Only</h3>
+            <p class="step__body">
+              Dashboard surfaces only patients at risk — NPO violation, held med taken, no ride
+              confirmed. Staff time goes to humans who need humans, not bulk paperwork.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Three pillars -->
+    <section class="section" id="pillars">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>04 · WHAT IT COVERS</div>
+          <h2 class="h2">
+            A text-based pre-op agent that covers
+            <span class="accent">the three preventable causes.</span>
+          </h2>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--pillar">
+            <div class="card__eyebrow">01</div>
+            <h3 class="card__title">NPO Compliance</h3>
+            <p class="card__body">
+              Timed reminders anchored to surgery time. Confirmations captured. Exceptions
+              escalated. Built-in logic for GLP-1 users with elevated residual gastric content.
+            </p>
+          </article>
+          <article class="card card--pillar">
+            <div class="card__eyebrow">02</div>
+            <h3 class="card__title">Med Reconciliation</h3>
+            <p class="card__body">
+              Per-drug hold/continue logic for anticoagulants, antiplatelets, SGLT2s, GLP-1s,
+              ACEi/ARBs, insulin. Anesthesia protocols built in. Provider approval required
+              before any patient-facing instruction goes out.
+            </p>
+          </article>
+          <article class="card card--pillar">
+            <div class="card__eyebrow">03</div>
+            <h3 class="card__title">Arrival Logistics</h3>
+            <p class="card__body">
+              Address, arrival time, transport, responsible-adult escort — confirmed via
+              two-way SMS the day before and morning of.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="section section--dark" id="roi">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>05 · ROI</div>
+          <h2 class="h2">
+            Simple pricing,
+            <span class="accent">immediate ROI.</span>
+          </h2>
+        </div>
+        <div class="grid grid--2">
+          <article class="card card--roi">
+            <div class="card__label">WHAT IT COSTS</div>
+            <div class="card__big">$2.5–4.5K<span class="card__big-unit">/ASC / mo</span></div>
+            <p class="card__body">
+              Annual default, 10% discount. Contribution margin 90–94%. No overage — tier
+              bumps as volume grows.
+            </p>
+          </article>
+          <article class="card card--roi card--roi-win">
+            <div class="card__label">WHAT IT SAVES</div>
+            <div class="card__big card__big--accent">$200–360K<span class="card__big-unit">/ASC / yr</span></div>
+            <p class="card__body">
+              A 25% cut in preventable cancellations pays for the platform 6–10× over, in
+              year one. <span class="muted">[INTERNAL ESTIMATE based on a 4-OR ASC illustrative model.]</span>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who it's for -->
+    <section class="section" id="who">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>06 · WHO IT'S FOR</div>
+          <h2 class="h2">
+            Built for
+            <span class="accent">ASC owners, medical directors, and practice administrators.</span>
+          </h2>
+          <p class="lead">
+            One decision-maker. One CSV. One live ASC in two weeks.
+          </p>
+        </div>
+
+        <div class="grid grid--3 who">
+          <div class="who__item">
+            <div class="who__kicker">SURGEON-OWNERS</div>
+            <p>
+              You sign the contract and run the schedule. We ship the safety layer inside
+              two weeks and send you the outcome report every 30 days.
+            </p>
+          </div>
+          <div class="who__item">
+            <div class="who__kicker">MEDICAL DIRECTORS</div>
+            <p>
+              Every medication hold is a draft requiring your review and approval before
+              patient communication begins. LINCR is decision support, not autonomous action.
+            </p>
+          </div>
+          <div class="who__item">
+            <div class="who__kicker">PRACTICE ADMINS</div>
+            <p>
+              Your medical assistant stops chasing 40–60 patients by phone and triages a
+              handful of exceptions. Your existing PMS stays exactly as it is.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="section section--dark" id="founder">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>07 · FOUNDER</div>
+          <h2 class="h2">
+            Built by someone who's
+            <span class="accent">lived the problem.</span>
+          </h2>
+        </div>
+
+        <div class="founder">
+          <div class="founder__avatar" aria-hidden="true">AJ</div>
+          <div class="founder__body">
+            <div class="founder__name">Anish Joseph, CAA</div>
+            <div class="founder__role">Founder &amp; CEO · LINCR Health, Inc.</div>
+            <p class="founder__quote">
+              "I'm a practicing Certified Anesthesiologist Assistant. I watched the same
+              preventable day-of cancellations happen every week across the surgery centers I worked in.
+              LINCR-SMS is the tool I wanted the night before, not the morning of."
+            </p>
+            <ul class="chips">
+              <li>Biomedical Engineering, Georgia Tech</li>
+              <li>Practicing CAA — active in ASCs</li>
+              <li>Built the CSV-native MVP end-to-end</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section__head">
+          <div class="tag"><span class="tag__bar"></span>08 · FAQ</div>
+          <h2 class="h2">Questions we get from ASC operators.</h2>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Is this HIPAA compliant?</summary>
+            <div class="faq__body">
+              HIPAA does not prohibit SMS. We operate under a signed BAA with Twilio, enforce
+              written patient opt-in before the first message, apply the minimum-necessary PHI
+              standard, maintain an audit trail, and honor STOP at the message level. Pre-op
+              clearance SMS is covered under the TCPA healthcare exemption for treatment-related
+              messages.
+            </div>
+          </details>
+
+          <details>
+            <summary>Do we need an EHR integration to start?</summary>
+            <div class="faq__body">
+              No. The default onboarding is CSV-in: export your scheduled-cases list after
+              clearance and upload. You can graduate to a nightly SFTP drop, HST Data Stream
+              pull, or FHIR sync later without changing anything patient-facing.
+            </div>
+          </details>
+
+          <details>
+            <summary>How is this different from HST Patient Engagement, SIS Exchange, Force, or Relatient?</summary>
+            <div class="faq__body">
+              Those are general patient engagement platforms with broad reminder features. LINCR
+              is a clinical safety layer built for ambulatory surgery specifically: a
+              drug-class–aware rules engine, NPO and medication-reconciliation logic, and a
+              real-time intent classifier that detects NPO violations and "I took a held med"
+              signals. The incumbents are partners and distribution channels — not the same product.
+            </div>
+          </details>
+
+          <details>
+            <summary>How does medication logic work — is an AI giving patients drug advice?</summary>
+            <div class="faq__body">
+              No. The rules engine produces a structured draft hold/continue/modify plan from
+              published guidance (ACC/AHA, FDA, ASA, AAOS). A provider reviews, optionally
+              edits, and approves every plan before any patient-facing instruction is sent.
+              The database records who approved what and when. This is clinical decision
+              support, not autonomous clinical action.
+            </div>
+          </details>
+
+          <details>
+            <summary>What does pilot onboarding look like?</summary>
+            <div class="faq__body">
+              Two weeks to first live case. Week 1 — BAA signed, CSV template mapped, cadence
+              configured to your case mix, opt-in language reviewed. Week 2 — shadow run on a
+              small cohort, coordinator dashboard training, then live. Outcome report at day 30
+              and day 90 covering cancellation rate, exception volume, and staff-hour recovery.
+            </div>
+          </details>
+
+          <details>
+            <summary>What does it cost?</summary>
+            <div class="faq__body">
+              $2,500–$4,500 per ASC per month on the annual plan. Larger multi-facility groups
+              get volume-tiered per-facility pricing. Solo and small-group surgeon practices
+              start at $599 per surgeon per month.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta" id="cta">
+      <div class="container cta__inner">
+        <div class="cta__bar" aria-hidden="true"></div>
+        <h2 class="cta__title">
+          Surgical clearance, on time,
+          <span class="accent">by SMS.</span>
+        </h2>
+        <p class="cta__sub">
+          Fifteen minutes on the phone. We'll walk through your current cancellation rate,
+          the three-cause breakdown for your ASC, and a single-ASC pilot plan.
+        </p>
+        <div class="cta__actions">
+          <a class="btn btn--primary btn--lg" href="mailto:anish@lincr.io?subject=LINCR-SMS%20pilot%20call">Email anish@lincr.io</a>
+          <a class="btn btn--ghost btn--lg" href="https://lincr.io" target="_blank" rel="noopener">lincr.io</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="5" y="8" width="3" height="16" fill="#14B8A6" />
+          <rect x="10" y="8" width="3" height="16" fill="currentColor" />
+          <rect x="15" y="8" width="3" height="16" fill="currentColor" />
+          <rect x="20" y="8" width="3" height="16" fill="currentColor" />
+          <rect x="25" y="8" width="3" height="16" fill="currentColor" />
+        </svg>
+        <span>LINCR Health, Inc.</span>
+      </div>
+      <div class="footer__meta">
+        <a href="mailto:anish@lincr.io">anish@lincr.io</a>
+        <span class="footer__dot">·</span>
+        <a href="https://lincr.io" target="_blank" rel="noopener">lincr.io</a>
+        <span class="footer__dot">·</span>
+        <span class="muted">© 2026 LINCR Health, Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
